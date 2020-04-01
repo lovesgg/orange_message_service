@@ -1,0 +1,9 @@
+# goland project files
+.idea
+.vscode
+conf/app.json
+/vendor
+/output
+/release
+mj_lobster_go_service
+

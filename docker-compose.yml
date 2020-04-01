@@ -1,0 +1,13 @@
+version: '3.0'
+services:
+  bell_view_go:
+    container_name: "mj_lobster_go_service"
+    build:
+      context: ./
+    ports:
+      - "1235:1234"
+    networks:
+      - mj_lobster_go_service-net
+networks:
+  mj_lobster_go_service-net:
+    external: true

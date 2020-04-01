@@ -1,0 +1,72 @@
+#!/usr/bin/groovy
+//该文件是nursery的接入配置文件，要求放到应用代码的根目录，并以nursery命名。
+//该文件中的配置变量，会被pipeline代码解析使用。
+@Library('nursery@master')
+
+//应用所属组：对应git仓库的组名称。
+def group = "mjyx"
+//应用名称：对应git仓库的名称，要求全公司唯一，只能用小写字母和中划线'-'.
+def appName = "mj-graft-service"
+
+//这是pipeline的类型定义，决定具体的发布流程。
+nursery() {     
+  //应用的配置信息定义。
+  app = [
+    //应用的全局配置信息定义。
+    globalConfig : [
+          //定义应用类型，php，sb，war
+          "NSR_APP_TYPE=yii_web",
+          //同group，定义应用所属组或项目。
+          "NSR_PROJECT=${group}" ,
+          //同appName，定义应用名称。
+          "NSR_APP_NAME=${appName}" , 
+          //定义应用监听的端口。
+          "NSR_APP_PORT=8090" ,
+          //定义应用的构建目录。
+          "NSR_BASE_DIR=.",
+          //就绪健康检查地址，用于判断应用是否启动成功，要求是一个应用启动后返回200状态码的一个url。
+          "NSR_READINESS_URL=/health/check",
+          //运行健康检查地址，用于判断应用是否正常运行。
+          "NSR_LIVENESS_URL=/health/check",
+    ],
+    //应用的部署环境配置区段。
+    deployConfig : [
+      //test 稳定测试环境
+      stable : [
+          //自定义pod的cpu限制。 建议设置成0不做限制
+          "NSR_CPU=0",
+          //自定义pod的内存限制。 [注 ： -Xms1g -Xmx1g 该参数值的定义一定要大于jvm设置的内存]
+          "NSR_MEM=0",
+          //自定义pod的副本数。
+          "NSR_REPLICAS=1", 
+          //定义应用的运行环境,用于确定配置依赖。
+          "NSR_APP_RUN_ENV=stable",
+          //自定义应用的编译构建指令。
+          "NSR_BUILD=composer install"
+      ] ,
+      qa1 : [   
+          "NSR_CPU=0",
+          "NSR_MEM=0",
+          "NSR_REPLICAS=1", 
+          "NSR_APP_RUN_ENV=stable",
+          "NSR_BUILD=composer install"
+      ] ,
+      qa2 : [   
+          "NSR_CPU=0",
+          "NSR_MEM=0",
+          "NSR_REPLICAS=1", 
+          "NSR_APP_RUN_ENV=stable",
+          "NSR_BUILD=composer install"
+      ] ,
+      qa3 : [   
+          "NSR_CPU=0",
+          "NSR_MEM=0",
+          "NSR_REPLICAS=1", 
+          "NSR_APP_RUN_ENV=stable",
+          "NSR_BUILD=composer install"
+      ] 
+    ]
+  ]
+}
+
+

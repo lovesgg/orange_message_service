@@ -1,0 +1,17 @@
+{
+  "notice_redis": {
+    "master_name": "",
+    "addrs": [
+      "127.0.0.1:6379"
+    ],
+    "prefix": "lobster:",
+    "dial_timeout": 1,
+    "read_timeout": 3,
+    "write_timeout": 3,
+    "pool_timeout": 2,
+    "pool_size": 80,
+    "min_idle_conns": 10,
+    "max_retries": 1
+  }
+
+}

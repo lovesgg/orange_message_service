@@ -1,0 +1,9 @@
+{
+  "mysql_config": {
+    "userName": "root",
+    "password": "sgg1710",
+    "ip": "127.0.0.1",
+    "port": 3306,
+    "dbName": "message"
+  }
+}

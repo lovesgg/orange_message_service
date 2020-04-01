@@ -1,0 +1,19 @@
+#!/bin/bash
+# gitlangci lint
+
+BIN=/usr/local/bin/golangci-lint
+
+if [ ! -x $BIN ]; then
+    echo "没有 /usr/local/bin/golangci-lint 可执行工具"
+    echo "https://github.com/golangci/golangci-lint"
+fi
+
+OUTPUT=$($BIN run --skip-dirs-use-default -E maligned)
+
+CHECK_PASS=$?
+
+if [ $CHECK_PASS -ne 0 ]; then
+    echo "$OUTPUT" | less
+fi
+
+exit $CHECK_PASS

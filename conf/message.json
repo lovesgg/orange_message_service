@@ -1,0 +1,16 @@
+{
+  "1000":{
+    "sequence":["subscribe"],
+    "subscribe":{
+      "channel":"微信订阅消息",
+      "template":"SendDataTest",
+      "is_retry":0
+    },
+    "sms":{
+      "channel":"阿里云",
+      "template":"SendDataTest",
+      "is_retry":0
+    }
+  }
+
+}

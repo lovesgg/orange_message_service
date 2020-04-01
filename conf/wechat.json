@@ -1,0 +1,7 @@
+{
+  "wechat": {
+    "grantType": "client_credential",
+    "appId": "",
+    "Secret": ""
+  }
+}

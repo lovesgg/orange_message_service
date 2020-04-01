@@ -1,0 +1,8 @@
+{
+  "log": {
+    "filename": "/data/logs/orange_message_service/app.log",
+    "max_backups": 100,
+    "max_age": 7,
+    "max_size": 100
+  }
+}
