@@ -17,7 +17,6 @@
 6.微信订阅消息
 7.邮件发送类库
 8.mq平台
-9.
 
 ```
 
@@ -48,14 +47,58 @@ go (>= 1.13.1)
   (这步骤是因为当您使用 rizla main.go时读的是这位置的配置)
 8.创建日志目录
   mkdir /data/logs/orange_message_service
-9.到这里可以认为您的环境已经没问题
+9.mq订阅发布
+  请自行安装当前流行的mq平台。
+  /client/send 负责发送mq消息
+  /server/send 负责消费消息mq
+  
+  (备注:/client/send 接口里边最后有说明 //执行mq发送 由server端来消费 这部分由您根据实际需要自行添加。如有问题可微信联系。)
+  
+10.到这里可以认为您的环境已经没问题
   到orange_message_service根目录下执行 rizla main.go即可运行啦。当然您也可以go run main.go
   如果运行报错请先自行排查环境是否都已经安装完毕，或者先自行百度。不清楚的可直接微信联系。
   
 ```
 
 ### 接口使用
+ 序号  |  接口  | 入参   |  备注
+ ---- | ----- | ------  | -------
+ 1  | /health/check | 无  | 返回正常信息即可验证服务正常启动 
+ 2  | /client/send | 参考以下 |   客户端接收
+ 3  | /server/send | 参考以下 |   服务端消费发送
 
+```bash
+  1. /client/send 
+    {
+      "msg_key":1000,
+      "source_id":1,
+      "body":[{
+        "goods_name":"苹果",
+        "store_name":"wg",
+        "address_detail":"wgrg",
+        "phone":"1881000000",
+        "note":"你好",
+        "user_id":"",
+        "order_no":"543646"
+      }]
+    }
+    
+  2. /server/send
+    {
+      "msg_key":1000,
+      "source_id":1,
+      "body":{
+        "goods_name":"苹果",
+        "store_name":"wg",
+        "address_detail":"wgrg",
+        "phone":"1881000000",
+        "note":"你好",
+        "user_id":"",
+        "order_no":"543646"
+      }
+    }
+```
+  
 
 
 ### 消息系统概览图
@@ -64,4 +107,16 @@ go (>= 1.13.1)
   见orange_message_service/.doc 目录下的图片
 ```
 
+### 温馨提示
+```bash
+  此服务适合有经验的人。因为涉及一些第三方接口和几个环境的部署。建议用在发送消息比较多的场景。如果只是发很简单的消息不推荐用这个。
+  其中可能包含部分不足的地方。陆续优化中。如果用在生产环境，需要掌握熟悉了才部署。
+  欢迎好友来一起交流探讨。
+```
 
+
+### 关于我
+```bash
+  微信: jdk0101 克里斯苏
+  需要请喝奶茶可直接加
+```
