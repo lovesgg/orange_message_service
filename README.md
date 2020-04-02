@@ -58,7 +58,69 @@ go (>= 1.13.1)
   到orange_message_service根目录下执行 rizla main.go即可运行啦。当然您也可以go run main.go
   如果运行报错请先自行排查环境是否都已经安装完毕，或者先自行百度。不清楚的可直接微信联系。
   
+  
+  
+推荐message.json配置：可自定义
+{
+  "1000":{
+    "sequence":["subscribe"],
+    "subscribe":{
+      "channel":"微信订阅消息",
+      "template":"SendDataTest",
+      "is_retry":0
+    },
+    "sms":{
+      "channel":"阿里云",
+      "template":"SendDataTest",
+      "is_retry":0
+    }
+  },
+  "1001":{
+    "sequence":["email"],
+    "email":{
+      "channel":"邮件",
+      "template":"SendDataTest",
+      "is_retry":0
+    }
+  }
+}
 ```
+
+### 参数可配置说明
+```bash
+  推荐message.json配置：可自定义
+  {
+    "1000":{
+      "sequence":["subscribe"],
+      "subscribe":{
+        "channel":"微信订阅消息",
+        "template":"SendDataTest",
+        "is_retry":0
+      },
+      "sms":{
+        "channel":"阿里云",
+        "template":"SendDataTest",
+        "is_retry":0
+      }
+    },
+    "1001":{
+      "sequence":["email"],
+      "email":{
+        "channel":"邮件",
+        "template":"SendDataTest",
+        "is_retry":0
+      }
+    }
+  }
+  
+  1.key值唯一，上游服务根据这唯一通道+模板参数组成。一次调用只需要关注这id和必要参数即可。
+  2.sequence:通道数组。循环发送。比如["sms","email","subscribe"] 此消息依次发送短信、邮件、订阅消息。
+  3.email|sms|subscribe 里的参数:
+    template对应的是一个方法，每个key对应的次方法唯一。
+    is_retry:如果发送失败是否需要重试。
+  详情参考以下接口调用。
+```
+
 
 ### 项目结构
 ```bash
