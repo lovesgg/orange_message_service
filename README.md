@@ -50,7 +50,8 @@ go (>= 1.13.1)
   
 
 ### 消息系统概览图
-
+常见流程:
+![图片名称](https://github.com/lovesgg/orange_message_service/blob/master/.doc/orange.png)  
 
 
 
