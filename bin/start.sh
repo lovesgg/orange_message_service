@@ -3,7 +3,7 @@
 set -e
 set -x
 
-ps aux | grep mj_lobster_go_service
+ps aux | grep orange_message_service
 
 FILEDIR=$(cd `dirname $0` && pwd -P)
 
@@ -11,4 +11,4 @@ cd $FILEDIR/../
 
 pwd
 
-supervisorctl restart mj_lobster_go_service
+supervisorctl restart orange_message_service

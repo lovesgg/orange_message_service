@@ -3,6 +3,6 @@
 set -e
 set -x
 
-ps aux | grep mj_lobster_go_service
+ps aux | grep orange_message_service
 
-supervisorctl stop mj_lobster_go_service
+supervisorctl stop orange_message_service
