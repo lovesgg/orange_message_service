@@ -60,6 +60,134 @@ go (>= 1.13.1)
   
 ```
 
+### 项目结构
+```bash
+.
+├── README.md
+├── app
+│   ├── common
+│   │   ├── aliyun.go
+│   │   ├── constant.go
+│   │   ├── enum
+│   │   │   ├── event_name.go
+│   │   │   ├── redis_expire.go
+│   │   │   ├── redis_key.go
+│   │   │   └── topic.go
+│   │   ├── error.go
+│   │   ├── structure.go
+│   │   ├── templates.go
+│   │   └── wechat.go
+│   ├── components
+│   │   ├── config
+│   │   │   └── config.go
+│   │   ├── eventdispatcher
+│   │   │   ├── event.go
+│   │   │   ├── eventdispatcher.go
+│   │   │   ├── eventdispatcher_test.go
+│   │   │   ├── listener.go
+│   │   │   └── log.go
+│   │   ├── http
+│   │   │   ├── client.go
+│   │   │   └── request.go
+│   │   ├── init.go
+│   │   ├── mlog
+│   │   │   └── log.go
+│   │   ├── mysql
+│   │   │   └── client.go
+│   │   ├── redis
+│   │   │   ├── client.go
+│   │   │   ├── client_test.go
+│   │   │   ├── hash.go
+│   │   │   ├── hash_test.go
+│   │   │   ├── string.go
+│   │   │   └── string_test.go
+│   │   ├── rpc
+│   │   │   ├── base_rpc.go
+│   │   │   └── config.go
+│   │   ├── sms
+│   │   │   ├── aliyun.go
+│   │   │   └── aliyun_test.go
+│   │   └── test
+│   │       └── helper.go
+│   ├── console
+│   │   ├── commands
+│   │   │   ├── hello.go
+│   │   │   └── init.go
+│   │   └── root.go
+│   ├── controllers
+│   │   ├── base_controller.go
+│   │   ├── client
+│   │   │   ├── send_action.go
+│   │   │   └── send_controller.go
+│   │   └── server
+│   │       ├── send_action.go
+│   │       └── send_controller.go
+│   ├── events
+│   │   └── rpc_call_warning.go
+│   ├── middleware
+│   │   ├── recover_panic.go
+│   │   ├── request_bootstrap.go
+│   │   └── request_logger.go
+│   ├── models
+│   │   ├── message.go
+│   │   └── request
+│   │       └── request.go
+│   ├── render
+│   │   └── sms.go
+│   ├── router
+│   │   └── routes.go
+│   ├── services
+│   │   ├── client
+│   │   │   └── client.go
+│   │   ├── db.go
+│   │   ├── repository
+│   │   ├── rpc
+│   │   ├── server
+│   │   │   ├── sms.go
+│   │   │   ├── smsTemplates
+│   │   │   │   └── sms.go
+│   │   │   ├── subscribe.go
+│   │   │   └── subscribeTemplates
+│   │   │       └── subscribe.go
+│   │   └── wechat.go
+│   └── utils
+│       ├── compress
+│       │   └── zlib.go
+│       ├── helper.go
+│       └── typeconv
+│           └── type_trans.go
+├── bin
+│   ├── mj_lobster_go_service.supervisor.conf
+│   ├── pre-commit
+│   ├── start.sh
+│   ├── stop.sh
+│   └── supervisord.conf
+├── build.sh
+├── cmd
+│   └── main.go
+├── conf
+│   ├── app.json
+│   ├── app.json.example
+│   ├── log.json
+│   ├── message.json
+│   ├── mysql.json
+│   ├── redis.json
+│   ├── rpc.json
+│   ├── sms.json
+│   └── wechat.json
+├── docker-compose.yml
+├── dockerfile
+├── go.mod
+├── go.sum
+├── main.go
+├── nursery
+├── orange_message_service
+├── output
+│   └── server
+└── runtime
+
+```
+
 ### 接口使用
  序号  |  接口  | 入参   |  备注
  ---- | ----- | ------  | -------
