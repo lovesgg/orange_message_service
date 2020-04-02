@@ -58,32 +58,6 @@ go (>= 1.13.1)
   到orange_message_service根目录下执行 rizla main.go即可运行啦。当然您也可以go run main.go
   如果运行报错请先自行排查环境是否都已经安装完毕，或者先自行百度。不清楚的可直接微信联系。
   
-  
-  
-推荐message.json配置：可自定义
-{
-  "1000":{
-    "sequence":["subscribe"],
-    "subscribe":{
-      "channel":"微信订阅消息",
-      "template":"SendDataTest",
-      "is_retry":0
-    },
-    "sms":{
-      "channel":"阿里云",
-      "template":"SendDataTest",
-      "is_retry":0
-    }
-  },
-  "1001":{
-    "sequence":["email"],
-    "email":{
-      "channel":"邮件",
-      "template":"SendDataTest",
-      "is_retry":0
-    }
-  }
-}
 ```
 
 ### 参数可配置说明
