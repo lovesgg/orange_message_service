@@ -17,6 +17,7 @@ type Message struct {
 	Note          string `json:"note"`
 	UserId        string `json:"user_id"`
 	OrderNo       string `json:"order_no"`
+	Email         string `json:"email"`
 }
 
 /**

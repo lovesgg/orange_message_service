@@ -33,6 +33,9 @@ func (c ServerController) Send(ctx context.Context) {
 		case "sms":
 			ret = servers.SmsSend(ctx, req, channel)
 			break
+		case "email":
+			ret = servers.EmailSend(ctx, req, channel)
+			break
 		default:
 			ret = servers.SubscribeSend(ctx, req, channel)
 		}
