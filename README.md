@@ -34,7 +34,7 @@ go (>= 1.13.1)
   1.app.json 环境+端口
   2.log.json 日志目录
   3.message.json 消息配置模板 可自定义通道和模板
-  4.mysql.json mysql配置信息
+  4.mysql.json mysql配置信息 需要自行定义数据库和表。根据自己需要的字段创建和对应代码中的字段即可。
   5.redis.json redis配置信息
   6.sms.json 阿里云短信配置
   7.wechat.json 微信订阅消息的appid配置
