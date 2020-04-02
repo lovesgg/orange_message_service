@@ -33,7 +33,7 @@ func EmailSend(ctx context.Context, params models.ServerReq, channel models2.Cha
 func sendEmail(ctx context.Context, email string, sendData map[string]interface{}) bool {
 	var sendTo []string
 	sendTo = append(sendTo, email)
-	ret := go_email.SendEmail(sendTo, "title", "content")
+	ret := go_email.SendEmail(sendTo, sendData["title"].(string), sendData["json"].(string))
 	if ret {
 		return true
 	} else {

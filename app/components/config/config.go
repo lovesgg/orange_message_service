@@ -7,7 +7,7 @@ import (
 )
 
 //这里是conf/目录下的文件名
-var CONFIG_FILES = [7]string{
+var CONFIG_FILES = [9]string{
 	"app",
 	"redis",
 	"rpc",
@@ -15,6 +15,8 @@ var CONFIG_FILES = [7]string{
 	"message",
 	"mysql",
 	"wechat",
+	"email",
+	"common",
 }
 
 var config *viper.Viper

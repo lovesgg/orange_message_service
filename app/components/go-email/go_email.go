@@ -2,6 +2,7 @@ package go_email
 
 import (
 	"gopkg.in/gomail.v2"
+	config2 "orange_message_service/app/components/config"
 	"strconv"
 )
 
@@ -9,12 +10,14 @@ import (
 这里的信息自行填写 获取放在配置文件中
 */
 func SendEmail(mailTo []string, subject string, body string) bool {
+	config := config2.GetConfig()
 	mailConn := map[string]string{
-		"user": "xxx@sample.cn",
-		"pass": "r4r3St*****7a7Uk",
-		"host": "smtp.exmail.qq.com",
-		"port": "465",
+		"user": config.GetString("email.user"),
+		"pass": config.GetString("email.pass"),
+		"host": config.GetString("email.host"),
+		"port": config.GetString("email.port"),
 	}
+	//fmt.Println(mailConn)
 
 	port, _ := strconv.Atoi(mailConn["port"]) //转换端口类型为int
 
