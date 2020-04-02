@@ -8,10 +8,21 @@
   #使用过程中有问题请联系微信:jdk010
 
 ### 依赖
+```bash
+1.golang
+2.iris
+3.redis
+4.mysql
+5.阿里云短信
+6.微信订阅消息
+7.邮件发送类库
+8.mq平台
+9.
 
+```
 
 ### 安装
-
+```bash
 go (>= 1.13.1)
 
 1.git clone https://github.com/lovesgg/orange_message_service.git
@@ -32,21 +43,15 @@ go (>= 1.13.1)
   cp -r orange_message_service/conf/* /data/www/orange_message_service/conf
 8.创建日志目录
   mkdir /data/logs/orange_message_service
-
-### IDE 配置
-推荐goland。记得打开enabel支持
-
-
-
-### 安装启动
-
-```bash
-# 修改配置文件
-cp conf/app.json.example conf/app.json
-
-./build.sh run
+  
+  
+  
 ```
+  
 
-### 版本管理
-`go mod`
+### 消息系统概览图
+
+
+
+
 
