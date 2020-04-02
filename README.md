@@ -32,27 +32,36 @@ go (>= 1.13.1)
 5.下载依赖: go mod vendor
 6.cp conf/app.json.example conf/app.json
 7.加配置信息如redis mysql 端口等
-  1.
-  2.
-  3.
-  4.
-  5.
-  6.
+  1.app.json 环境+端口
+  2.log.json 日志目录
+  3.message.json 消息配置模板 可自定义通道和模板
+  4.mysql.json mysql配置信息
+  5.redis.json redis配置信息
+  6.sms.json 阿里云短信配置
+  7.wechat.json 微信订阅消息的appid配置
+  
+  (如果需要追加.json文件，请在app/components/config/config.go中修改)
 7.配置完信息可以拷贝配置文件到另一个目录啦
   mkdir /data/www/orange_message_service/conf
   cp -r orange_message_service/conf/* /data/www/orange_message_service/conf
+  
+  (这步骤是因为当您使用 rizla main.go时读的是这位置的配置)
 8.创建日志目录
   mkdir /data/logs/orange_message_service
-  
-  
+9.到这里可以认为您的环境已经没问题
+  到orange_message_service根目录下执行 rizla main.go即可运行啦。当然您也可以go run main.go
+  如果运行报错请先自行排查环境是否都已经安装完毕，或者先自行百度。不清楚的可直接微信联系。
   
 ```
-  
+
+### 接口使用
+
+
 
 ### 消息系统概览图
-常见流程:
-![图片名称](https://github.com/lovesgg/orange_message_service/blob/master/.doc/orange.png)  
-
-
+```bash
+  包含一些说明图片
+  见orange_message_service/.doc 目录下的图片
+```
 
 
