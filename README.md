@@ -7,14 +7,14 @@
   
   这两张图可以更加直观的看出我为什么要写这么一套小系统。还是有些优势的。
   
-  # 以前的发消息方式
+### 以前的发消息方式
   ![](https://github.com/lovesgg/orange_message_service/blob/master/.doc/orange.png)
   
   
-  #现在的消息系统
+#### 现在的消息系统
   ![](https://github.com/lovesgg/orange_message_service/blob/master/.doc/orange-new.png)
   
-  接下来就是开始您的安装之旅吧。
+#### 现在开始您的安装之旅吧。
 
 ### 依赖
 ```bash
