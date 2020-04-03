@@ -13,7 +13,7 @@ func SendDataTest(ctx context.Context, params models.ServerReq) map[string]inter
 	jsons, _ := json.Marshal(params)
 	return map[string]interface{}{
 		"title": params.Body.GoodsName,
-		"json": jsons,
+		"json": string(jsons),
 	}
 }
 

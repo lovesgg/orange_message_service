@@ -10,6 +10,7 @@ import (
 备注 需要您自己新建一张数据表如message
 存储的字段由您根据实际参数决定 建议保留的字段:user_id,c_t,u_t,return_data,send_status
 保留信息是为了后续排查发送状态等
+您也可以忽略这过程 除非对于发送的 结果不care
  */
 
 

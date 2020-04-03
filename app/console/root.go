@@ -10,11 +10,12 @@ import (
 
 var Commands = []*cobra.Command{
 	commands.HelloCommand,
+	commands.ServerCommand,
 }
 
 var RootCmd = &cobra.Command{
 	SilenceErrors: true,
-	Use:           "meicli",
+	Use:           "cli",
 	Short:         "run commands with meicli",
 }
 
