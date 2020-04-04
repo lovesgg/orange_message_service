@@ -1,9 +1,11 @@
 package services
 
 import (
+	"encoding/json"
 	"fmt"
 	"orange_message_service/app/components/mysql"
 	models "orange_message_service/app/models/request"
+	"time"
 )
 
 /**
@@ -17,18 +19,23 @@ import (
 /**
 放入mysql
 */
-func InsertDataMysql(params models.ServerReq) bool {
-	return true //如果需要保存信息 请修改这方法并注释这行代码
-
+func InsertDataMysql(params models.ServerReq, toUser string, sendStatus int) bool {
 	fmt.Println("insert mysql")
+
+	//return true //如果不需要保存信息到mysql 请修改这方法。直接返回true即可
+
 	db := mysql.GetDb()
 	defer db.Close()
 
-	ret, err := db.Exec("INSERT INTO message (user_id, send_status, created) VALUES (?, ?, ?)", "18810832200", 1, "2016-06-21")
+	jsonBody, _ := json.Marshal(params.Body)
+	create := time.Now().Unix()
+
+	ret, err := db.Exec("INSERT INTO message (to_user, body, c_t, u_t, send_status, source_id) VALUES (?, ?, ?, ?, ?, ?)", toUser, jsonBody, create, create,sendStatus,params.SourceId)
 	if err != nil {
-		fmt.Println(ret)
+		fmt.Println(ret, err)
 		return false
 	}
+	fmt.Println("insert db ok")
 	return true
 
 }

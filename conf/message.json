@@ -11,6 +11,21 @@
       "template":"SendDataTest",
       "is_retry":0
     }
+  },
+  "1001":{
+    "sequence":["email"],
+    "email":{
+      "channel":"邮件",
+      "template":"SendDataTest",
+      "is_retry":0
+    }
+  },
+  "1002":{
+    "sequence":["sms"],
+    "sms":{
+      "channel":"阿里云短信",
+      "template":"SendDataTest",
+      "is_retry":0
+    }
   }
-
 }

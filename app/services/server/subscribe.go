@@ -34,7 +34,7 @@ func SubscribeSend(ctx context.Context, params models.ServerReq, channel models2
 	ret := sendWechat(ctx, sendData, accessToken)
 
 	if ret {
-		_ = services.InsertDataMysql(params)
+		_ = services.InsertDataMysql(params, params.Body.UserId, 1)
 		//已发送的可将数据入库
 		return true
 	} else {

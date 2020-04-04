@@ -14,10 +14,10 @@ func checkErr(err error) {
 
 func GetDb() *sql.DB {
 	config := config2.GetConfig()
-	userName := config.GetString("mysql.userName")
-	password := config.GetString("mysql.password")
-	ip := config.GetString("mysql.ip")
-	dbName := config.GetString("mysql.dbName")
+	userName := config.GetString("mysql_config.userName")
+	password := config.GetString("mysql_config.password")
+	ip := config.GetString("mysql_config.ip")
+	dbName := config.GetString("mysql_config.dbName")
 
 	//连接数据库
 	db, err := sql.Open("mysql", userName+":"+password+"@tcp("+ip+")/"+dbName+"?charset=utf8")

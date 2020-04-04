@@ -19,18 +19,18 @@ func SmsSend(ctx context.Context, params models.ServerReq, channel models2.Chann
 		sendData = smsTemplates.OtherFunc(ctx, params)
 		break
 	}
-	ret := sendSms(ctx, params.Body.Phone, sendData)
+	ret := sendSms(ctx, params.Body.Phone, sendData["templateCode"].(string) ,sendData)
 
 	if ret {
 		//已发送的可将数据入库
-		services.InsertDataMysql(params)
+		services.InsertDataMysql(params, params.Body.Phone, 1)
 		return true
 	} else {
 		return false
 	}
 }
 
-func sendSms(ctx context.Context, phone string, sendData map[string]interface{}) bool {
-	ret := sms.Send(phone, "code", sendData)
+func sendSms(ctx context.Context, phone string, templateCode string, sendData map[string]interface{}) bool {
+	ret := sms.Send(phone, templateCode, sendData)
 	return ret
 }

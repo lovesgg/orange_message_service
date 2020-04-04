@@ -9,9 +9,9 @@ import (
 
 func GetClient() *dysmsapi.Client {
 	config := config2.GetConfig()
-	REGION_ID := config.GetString("sms.aliyun.REGION_ID")
-	ACCESS_KEY_ID := config.GetString("sms.aliyun.ACCESS_KEY_ID")
-	ACCESS_KEY_SECRET := config.GetString("sms.aliyun.ACCESS_KEY_SECRET")
+	REGION_ID := config.GetString("aliyunSms.regionId")
+	ACCESS_KEY_ID := config.GetString("aliyunSms.keyId")
+	ACCESS_KEY_SECRET := config.GetString("aliyunSms.secret")
 	client, err := dysmsapi.NewClientWithAccessKey(REGION_ID, ACCESS_KEY_ID, ACCESS_KEY_SECRET)
 	if err != nil {
 		panic(err)
@@ -27,7 +27,7 @@ func Send(phone string, TemplateCode string, TemplateParam map[string]interface{
 	request.Scheme = "https"
 
 	request.PhoneNumbers = phone
-	request.SignName = "测试平台"
+	request.SignName = TemplateParam["sign_name"].(string) //签名不能为空
 	request.TemplateCode = TemplateCode
 	request.TemplateParam = string(templates)
 

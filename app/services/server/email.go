@@ -23,7 +23,7 @@ func EmailSend(ctx context.Context, params models.ServerReq, channel models2.Cha
 
 	if ret {
 		//已发送的可将数据入库
-		services.InsertDataMysql(params)
+		services.InsertDataMysql(params, params.Body.Email, 1)
 		return true
 	} else {
 		return false

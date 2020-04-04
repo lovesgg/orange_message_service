@@ -1,9 +1,7 @@
 {
-  "sms": {
-    "aliyun": {
-      "REGION_ID": "",
-      "ACCESS_KEY_ID": "",
-      "ACCESS_KEY_SECRET": ""
-    }
+  "aliyunSms": {
+    "regionId": "",
+    "keyId": "",
+    "secret": ""
   }
 }
