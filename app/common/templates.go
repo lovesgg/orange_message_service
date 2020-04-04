@@ -5,5 +5,5 @@ package common
 可往后一直追加
  */
 const (
-	TEMPLATE_VIRTUAL_ORDER = "wr05C2pGGJVMDtIgGzwAknxXk6zH664WE97-rysPREs";//虚拟订单通知
+	TEMPLATE_VIRTUAL_ORDER = "jjjjjjjjjjjjjjjjjjjjjjjjjjjj";//自己微信订阅消息模板
 )
