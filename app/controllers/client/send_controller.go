@@ -14,3 +14,7 @@ type ClientController struct {
 func SendHandler(ctx context.Context) {
 	client.Send(ctx)
 }
+
+func SendBatchHandler(ctx context.Context) {
+	client.SendBatch(ctx)
+}

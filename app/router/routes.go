@@ -17,8 +17,11 @@ func RegisterRoutes(app *iris.Application) {
 		_, _ = ctx.WriteString("welcome app ")
 	})
 
-	//客户端接收消息 发送mq
+	//客户端接收消息 发送mq 适合消息量少的
 	app.Post("/client/send", clientController.SendHandler)
+
+	//客户端接收消息 发送mq 适合消息量大的 比如百万级 只是做个模拟。具体细节需要自己实现
+	app.Post("/client/send-batch", clientController.SendBatchHandler)
 
 	//服务端接mq实时消费
 	app.Post("/server/send", serverController.SendHandle)
