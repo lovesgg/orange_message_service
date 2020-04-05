@@ -107,7 +107,6 @@ go (>= 1.13.1)
 
 ### 项目结构
 ```bash
-.
 ├── README.md
 ├── app
 │   ├── common
@@ -131,6 +130,8 @@ go (>= 1.13.1)
 │   │   │   ├── eventdispatcher_test.go
 │   │   │   ├── listener.go
 │   │   │   └── log.go
+│   │   ├── go-email
+│   │   │   └── go_email.go
 │   │   ├── http
 │   │   │   ├── client.go
 │   │   │   └── request.go
@@ -157,7 +158,8 @@ go (>= 1.13.1)
 │   ├── console
 │   │   ├── commands
 │   │   │   ├── hello.go
-│   │   │   └── init.go
+│   │   │   ├── init.go
+│   │   │   └── server_send.go
 │   │   └── root.go
 │   ├── controllers
 │   │   ├── base_controller.go
@@ -188,12 +190,16 @@ go (>= 1.13.1)
 │   │   ├── repository
 │   │   ├── rpc
 │   │   ├── server
+│   │   │   ├── email.go
+│   │   │   ├── emailTemplates
+│   │   │   │   └── email.go
 │   │   │   ├── sms.go
 │   │   │   ├── smsTemplates
 │   │   │   │   └── sms.go
 │   │   │   ├── subscribe.go
-│   │   │   └── subscribeTemplates
-│   │   │       └── subscribe.go
+│   │   │   ├── subscribeTemplates
+│   │   │   │   └── subscribe.go
+│   │   │   └── word.go
 │   │   └── wechat.go
 │   └── utils
 │       ├── compress
@@ -213,6 +219,9 @@ go (>= 1.13.1)
 ├── conf
 │   ├── app.json
 │   ├── app.json.example
+│   ├── common.json
+│   ├── email.json
+│   ├── filter_words.json
 │   ├── log.json
 │   ├── message.json
 │   ├── mysql.json
@@ -231,6 +240,17 @@ go (>= 1.13.1)
 │   └── server
 └── runtime
 
+
+说明:
+1.入口main文件:main.go
+2.可执行文件:orange_message_service
+3.mod管理文件:go.mod/go.sum
+4.路由文件:app/router/routers.go
+5.项目配置文件:conf/
+6.控制器路径:app/controllers
+7.公共常量枚举:app/common
+8.公共组件:app/components
+9.启动文件:build.sh  (rizla main.go 也行)
 
 ```
 
