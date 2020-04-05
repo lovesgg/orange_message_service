@@ -260,6 +260,7 @@ go (>= 1.13.1)
  1  | /health/check | 无  | 返回正常信息即可验证服务正常启动 
  2  | /client/send | 参考以下 |   客户端接收
  3  | /server/send | 参考以下 |   服务端消费发送
+ 4  | /client/send-batch | 无 |   百万级发送
 
 ```bash
   1. /client/send 
