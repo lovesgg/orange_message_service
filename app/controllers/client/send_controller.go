@@ -18,3 +18,7 @@ func SendHandler(ctx context.Context) {
 func SendBatchHandler(ctx context.Context) {
 	client.SendBatch(ctx)
 }
+
+func SendBySync(ctx context.Context)  {
+	client.SendBySync(ctx)
+}

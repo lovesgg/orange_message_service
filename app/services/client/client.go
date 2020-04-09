@@ -12,6 +12,7 @@ import (
 	"orange_message_service/app/components/mlog"
 	"orange_message_service/app/components/redis"
 	models "orange_message_service/app/models/request"
+	"sync"
 )
 
 func SendMessage(ctx context.Context, req models.SendReq) bool {
@@ -23,7 +24,7 @@ func SendMessage(ctx context.Context, req models.SendReq) bool {
 
 	//写入缓存
 	redisClient := redis.GetCommonClient()
-	cacheKey := enum.REDIS_KEY_MJYX_MESSAGE_IDEMPOTENT + md5str
+	cacheKey := enum.REDIS_KEY_MESSAGE_IDEMPOTENT + md5str
 	ret, err := redisClient.Exists(cacheKey)
 	if err != nil {
 		mlog.Warnf(ctx, "redis send msg error error.||key=%s||errno=%d||err=%#v", cacheKey, common.ERROR_REDIS_CALL_ERROR, err)
@@ -58,7 +59,64 @@ func SendMessage(ctx context.Context, req models.SendReq) bool {
 	return true
 }
 
-//测试方法 模拟消息队列消费 生产环境不能这么用哈
+/**
+这方法支持并发 推荐使用这方法来发送
+不论body中有几条消息 一律都可以发出去哦
+ */
+func SendMessageBySync(ctx context.Context, req models.SendReq) bool {
+	str, _ := json.Marshal(req)
+	w := md5.New()
+	_, _ = io.WriteString(w, string(str))
+	//将str写入到w中
+	md5str := fmt.Sprintf("%x", w.Sum(nil))
+
+	//写入缓存
+	redisClient := redis.GetCommonClient()
+	cacheKey := enum.REDIS_KEY_MESSAGE_IDEMPOTENT + md5str
+	ret, err := redisClient.Exists(cacheKey)
+	if err != nil {
+		mlog.Warnf(ctx, "redis send msg error error.||key=%s||errno=%d||err=%#v", cacheKey, common.ERROR_REDIS_CALL_ERROR, err)
+	}
+	if ret > 0 {
+		return false //已经存在
+	}
+	setErr := redisClient.Set(cacheKey, 1, enum.REDIS_EXPIRE_NINE_SECONDS)
+	if setErr != nil {
+		mlog.Warnf(ctx, "redis set msg error error.||key=%s||errno=%d||err=%#v", cacheKey, common.ERROR_REDIS_CALL_ERROR, err)
+		return false //连接有误
+	}
+
+	bodyLen := len(req.Body)
+	wg := sync.WaitGroup{}
+	wg.Add(bodyLen)
+
+	for _, body := range req.Body {
+		go func() {
+			fmt.Println("sync start..............................")
+			postData := make(map[string]interface{})
+			postData["msg_key"] = req.MsgKey
+			postData["source_id"] = req.SourceId
+			postData["body"] = body
+
+			mcqKey := body.UserId + body.OrderNo; //mcq的key
+			fmt.Println(mcqKey)
+			fmt.Println(enum.MCQ_MESSAGE_CLIENT_CENTER)
+			fmt.Println("开始发送mq")
+
+			//执行mq发送 由server端来消费 现在这方法是模拟生产消费同步调用的。需要您自己搭建mq服务发送topic然后/server/send来消费
+			//关于这部分过程的调用请看根目录下的.doc目下的图片哈.这么调用也可发送。就是显得很冗余。因为加了层http调用了。你要是觉得调内网这部分耗时可忽略那就这么用吧
+			ret := sendMqTest(postData)
+			fmt.Println(ret)
+			//sendMq(postData) //生产环境先实现这方法
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+
+	return true
+}
+
+//本地测试方法 模拟消息队列消费 生产环境不能这么用哈
 func sendMqTest(params map[string]interface{}) bool {
 	//需要换成您自己的url和端口 (这就是你运行这项目的ip+port)
 	ret := http.Post("http://127.0.0.1:2195/server/send", params)
