@@ -261,7 +261,8 @@ go (>= 1.13.1)
  2  | /client/send | 参考以下 |   客户端接收
  3  | /server/send | 参考以下 |   服务端消费发送
  4  | /client/send-batch | 参考以下 |   批量送
- 5  | /client/send-by-sync | 参考一下 |   协程批量发送(推荐使用这方法)
+ 5  | /client/send-by-sync | 参考以下 |   协程批量发送(推荐使用这方法)
+ 6  | /client/send-by-users | 参考以下 |   协程批量发送-批量用户发送同一模板消息(推荐使用这方法)
 
 ```bash
   1. /client/send 
@@ -292,6 +293,16 @@ go (>= 1.13.1)
         "user_id":"",
         "order_no":"543646"
       }
+    }
+    
+  3./client/send-by-users
+    {
+      "msg_key":1003,
+      "source_id":1,
+      "users":[
+        "99328515@qq.com",
+        "773668125@qq.com"
+      ]
     }
 ```
   
