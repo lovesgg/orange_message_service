@@ -28,3 +28,9 @@ type AccessToken struct {
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int64  `json:"expires_in"`
 }
+
+type SendByUsersReq struct {
+	SourceId int      `json:"source_id"`
+	MsgKey   int      `json:"msg_key"`
+	Users    []string `json:"users"`
+}

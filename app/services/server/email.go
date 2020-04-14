@@ -18,6 +18,9 @@ func EmailSend(ctx context.Context, params models.ServerReq, channel models2.Cha
 	case "OtherFunc":
 		sendData = emailTemplates.OtherFunc(ctx, params)
 		break
+	case "SendByUser":
+		sendData = emailTemplates.SendByUsers(ctx, params)
+
 	}
 	ret := sendEmail(ctx, params.Body.Email, sendData)
 

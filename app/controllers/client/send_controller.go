@@ -22,3 +22,7 @@ func SendBatchHandler(ctx context.Context) {
 func SendBySync(ctx context.Context)  {
 	client.SendBySync(ctx)
 }
+
+func SendByUsers(ctx context.Context)  {
+	client.SendByUsers(ctx)
+}

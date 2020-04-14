@@ -71,3 +71,18 @@ func (c *ClientController) SendBySync(ctx context.Context) {
 		return
 	}
 }
+
+func (c *ClientController) SendByUsers(ctx context.Context) {
+	var req models.SendByUsersReq
+	c.GetRequest(ctx, &req)
+
+	ret := clientService.SendByUsers(ctx, req)
+	if ret {
+		c.RenderJson(ctx, "send ok")
+		return
+	} else {
+
+		c.RenderJson(ctx, "发送失败")
+		return
+	}
+}

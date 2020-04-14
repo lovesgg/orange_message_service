@@ -12,7 +12,9 @@ import (
 	"orange_message_service/app/components/http"
 	"orange_message_service/app/components/mlog"
 	"orange_message_service/app/components/redis"
+	models2 "orange_message_service/app/models"
 	models "orange_message_service/app/models/request"
+	"strconv"
 	"sync"
 )
 
@@ -131,5 +133,53 @@ func sendMqTest(params map[string]interface{}) bool {
 
 //这里实现mq生产方法  然后验证/server/send是否接收到并能发送就可以了
 func sendMq(params map[string]interface{}) bool {
+	return true
+}
+
+func SendByUsers(ctx context.Context, req models.SendByUsersReq) bool {
+	//取出模板信息
+	config := config.GetConfig()
+	sequenceData := config.GetStringMap(strconv.Itoa(req.MsgKey)) //整个msg_id  对应的配置
+	fmt.Println(sequenceData)
+
+	sendWay := sequenceData["sequence"].([]interface{})
+	sendType := sendWay[0]
+
+	bodyLen := len(req.Users)
+	wg := sync.WaitGroup{}
+	wg.Add(bodyLen)
+
+	fmt.Println(req.Users)
+
+	//遍历用户信息
+	for _, userId := range req.Users {
+		//在这一步增加要发送信息 phone user_id email
+		var body models2.Message
+
+		switch sendType {
+		case "email":
+			body.Email = userId
+			break
+		case "subscribe":
+			body.UserId = userId
+		case "sms":
+			body.Phone = userId
+		}
+
+		postData := make(map[string]interface{})
+		postData["msg_key"] = req.MsgKey
+		postData["source_id"] = req.SourceId
+		postData["body"] = body
+
+
+		go func() {
+			ret := sendMqTest(postData)
+			fmt.Println(ret)
+			wg.Done()
+		}()
+	}
+	
+	wg.Wait()
+	
 	return true
 }

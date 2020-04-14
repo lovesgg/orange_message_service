@@ -13,13 +13,20 @@ func SendDataTest(ctx context.Context, params models.ServerReq) map[string]inter
 	jsons, _ := json.Marshal(params)
 	return map[string]interface{}{
 		"title": params.Body.GoodsName,
-		"json": string(jsons),
+		"json":  string(jsons),
 	}
 }
 
 func OtherFunc(ctx context.Context, params models.ServerReq) map[string]interface{} {
 	return map[string]interface{}{
 		"title": params.Body.GoodsName,
+		"json":  "",
 	}
 }
 
+func SendByUsers(ctx context.Context, params models.ServerReq) map[string]interface{} {
+	return map[string]interface{}{
+		"title": "每个用户都不一样",
+		"json":  "test",
+	}
+}

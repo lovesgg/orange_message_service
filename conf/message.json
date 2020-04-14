@@ -27,5 +27,29 @@
       "template":"SendDataTest",
       "is_retry":0
     }
+  },
+  "1003":{
+    "sequence":["email"],
+    "email":{
+      "channel":"邮件",
+      "template":"SendByUser",
+      "is_retry":0
+    }
+  },
+  "1004":{
+    "sequence":["sms"],
+    "sms":{
+      "channel":"阿里云短信",
+      "template":"SendByUser",
+      "is_retry":0
+    }
+  },
+  "1005":{
+    "sequence":["subscribe"],
+    "subscribe":{
+      "channel":"微信订阅消息",
+      "template":"SendByUser",
+      "is_retry":0
+    }
   }
 }
