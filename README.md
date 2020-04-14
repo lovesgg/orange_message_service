@@ -12,6 +12,7 @@
   
   
 #### 橘子消息系统
+  ![](https://github.com/lovesgg/orange_message_service/blob/master/.doc/pic.png)
   ![](https://github.com/lovesgg/orange_message_service/blob/master/.doc/orange-new.png)
   
 #### 现在开始您的安装之旅吧。
