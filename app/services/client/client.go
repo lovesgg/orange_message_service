@@ -8,6 +8,7 @@ import (
 	"io"
 	"orange_message_service/app/common"
 	"orange_message_service/app/common/enum"
+	"orange_message_service/app/components/config"
 	"orange_message_service/app/components/http"
 	"orange_message_service/app/components/mlog"
 	"orange_message_service/app/components/redis"
@@ -118,8 +119,12 @@ func SendMessageBySync(ctx context.Context, req models.SendReq) bool {
 
 //本地测试方法 模拟消息队列消费 生产环境不能这么用哈
 func sendMqTest(params map[string]interface{}) bool {
+	conf := config.GetConfig()
+	port := conf.GetString("port")
+	url := "http://127.0.0.1:" + port + "/server/send"
+	fmt.Println("请求的server url", url)
 	//需要换成您自己的url和端口 (这就是你运行这项目的ip+port)
-	ret := http.Post("http://127.0.0.1:2195/server/send", params)
+	ret := http.Post(url, params)
 	fmt.Println("server端消息发送结果:" ,ret)
 	return true
 }
