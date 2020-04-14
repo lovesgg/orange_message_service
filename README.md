@@ -7,11 +7,12 @@
   
   这两张图可以更加直观的看出我为什么要写这么一套小系统。还是有些优势的。
   
-### 以前的发消息方式
+### 普通的发消息方式
   ![](https://github.com/lovesgg/orange_message_service/blob/master/.doc/orange.png)
   
   
-#### 现在的消息系统
+#### 橘子消息系统
+  ![](https://github.com/lovesgg/orange_message_service/blob/master/.doc/pic.png)
   ![](https://github.com/lovesgg/orange_message_service/blob/master/.doc/orange-new.png)
   
 #### 现在开始您的安装之旅吧。
