@@ -5,6 +5,7 @@ import (
 	"github.com/kataras/iris/context"
 	clientController "orange_message_service/app/controllers/client"
 	serverController "orange_message_service/app/controllers/server"
+	customerController "orange_message_service/app/controllers/client"
 )
 
 func RegisterRoutes(app *iris.Application) {
@@ -41,4 +42,9 @@ func RegisterRoutes(app *iris.Application) {
 
 	//服务端接mq实时消费
 	app.Post("/server/send", serverController.SendHandle)
+
+	/**
+	客服对话 从acm获取配置自动匹配回复给客户消息
+	 */
+	app.Post("/customer/say", customerController.CustomerSayHandler)
 }

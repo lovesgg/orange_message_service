@@ -24,3 +24,4 @@ func GetDb() *sql.DB {
 	checkErr(err)
 	return db
 }
+

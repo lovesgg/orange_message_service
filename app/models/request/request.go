@@ -34,3 +34,7 @@ type SendByUsersReq struct {
 	MsgKey   int      `json:"msg_key"`
 	Users    []string `json:"users"`
 }
+
+type CustomerSayReq struct {
+	Text string `json:"text"`
+}
