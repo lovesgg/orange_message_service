@@ -1,0 +1,9 @@
+2020/04/20 14:18:07 [info] http nacos server list: <139.196.135.144
+> 
+2020/04/20 14:18:07 [info] server list is updated, old: <[]>,new:<[{/nacos 139.196.135.144 8848}]> 
+2020/04/20 14:44:10 [info] http nacos server list: <139.196.135.144
+> 
+2020/04/20 14:44:10 [info] server list is updated, old: <[]>,new:<[{/nacos 139.196.135.144 8848}]> 
+2020/04/20 14:45:02 [info] http nacos server list: <139.196.135.144
+> 
+2020/04/20 14:45:02 [info] server list is updated, old: <[]>,new:<[{/nacos 139.196.135.144 8848}]> 
