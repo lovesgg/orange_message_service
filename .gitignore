@@ -6,4 +6,5 @@ conf/app.json
 /output
 /release
 orange_message_service
+log/nacos-sdk*
 
